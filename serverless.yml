@@ -1,0 +1,23 @@
+service : octagon-studio-be-test
+provider :
+  name : aws
+  runtime : nodejs12.x
+  stage : dev
+  region : us-east-1
+  memorySize : 128
+functions :
+  app : 
+    handler : src/index.handler
+    events :
+      - http : 
+          path : /API1
+          method : GET
+      - http : 
+          path : /API2
+          method : GET
+      - http : 
+          path : /API1/{proxy+}
+          method : GET
+      - http : 
+          path : /API2/{proxy+}
+          method : GET
